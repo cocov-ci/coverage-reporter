@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE report PUBLIC "-//JACOCO//DTD Report 1.1//EN" "report.dtd">
+<report name="project">
+    <sessioninfo id="bn889-b9e40755" start="1672178809427" dump="1672178856336"/>
+    <package name="com/company/project/batch/parsing">
+        <sourcefile name="FileWithNoExecutableCode.kt" />
+        <sourcefile name="ParsedBatchWriter.kt">
+            <line nr="7" mi="0" ci="9" mb="0" cb="0"/>
+            <line nr="9" mi="0" ci="5" mb="0" cb="0"/>
+            <line nr="10" mi="0" ci="4" mb="0" cb="0"/>
+            <line nr="11" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="12" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="15" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="16" mi="0" ci="1" mb="0" cb="0"/>
+            <counter type="INSTRUCTION" missed="0" covered="35"/>
+            <counter type="LINE" missed="0" covered="7"/>
+            <counter type="COMPLEXITY" missed="0" covered="3"/>
+            <counter type="METHOD" missed="0" covered="3"/>
+            <counter type="CLASS" missed="0" covered="1"/>
+        </sourcefile>
+    </package>
+</report>

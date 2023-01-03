@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage lines-valid="52" lines-covered="2" line-rate="0.0384" branches-valid="12" branches-covered="8" branch-rate="0.6666" timestamp="1672173826304" complexity="0" version="0.1">
+    <sources>
+        <source>/app</source>
+    </sources>
+    <packages>
+        <package name="src" line-rate="1" branch-rate="1">
+            <classes>
+                <class name="config.js" filename="src/config.js" line-rate="1" branch-rate="1">
+                    <methods>
+                    </methods>
+                    <lines>
+                        <line number="1" hits="2" branch="false"/>
+                        <line number="7" hits="2" branch="true" condition-coverage="100% (2/2)"/>
+                    </lines>
+                </class>
+            </classes>
+        </package>
+    </packages>
+</coverage>
