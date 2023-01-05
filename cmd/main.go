@@ -60,6 +60,14 @@ func main() {
 			Name:   "prepare",
 			Usage:  "Starts a worker",
 			Action: command.Prepare,
+			Flags: []cli.Flag{
+				&cli.StringFlag{
+					Name:     "commitish",
+					Usage:    "The SHA identifying the commit that generated the report being sent",
+					Required: false,
+					EnvVars:  envs("COMMMIT_SHA", "COCOV_COMMIT_SHA"),
+				},
+			},
 		},
 		{
 			Name:  "submit",
@@ -70,12 +78,6 @@ func main() {
 					Usage:    "Defines the Cocov API URL that will receive the report",
 					Required: true,
 					EnvVars:  envs("COCOV_API_URL"),
-				},
-				&cli.StringFlag{
-					Name:     "commitish",
-					Usage:    "The SHA identifying the commit that generated the report being sent",
-					Required: false,
-					EnvVars:  envs("GITHUB_SHA", "GIT_SHA", "COMMMIT_SHA", "COCOV_COMMIT_SHA"),
 				},
 			},
 			Action: command.Submit,

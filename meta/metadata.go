@@ -9,6 +9,7 @@ import (
 type Metadata struct {
 	Files map[string]string `json:"files,omitempty"`
 	Pwd   string            `json:"pwd,omitempty"`
+	Sha   string            `json:"sha,omitempty"`
 }
 
 func (m Metadata) PathOf(relative string) string {
