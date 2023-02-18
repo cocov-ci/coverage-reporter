@@ -16,8 +16,8 @@ type Lcov struct {
 	meta *meta.Metadata
 }
 
-func (l *Lcov) Wants(diffs map[string]string) *string {
-	for f := range diffs {
+func (l *Lcov) Wants(files []string) *string {
+	for _, f := range files {
 		if ext := filepath.Ext(f); ext != ".lcov" && ext != ".info" {
 			continue
 		}

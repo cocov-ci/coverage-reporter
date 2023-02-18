@@ -21,8 +21,8 @@ func (g *GoCov) SetMeta(meta *meta.Metadata) { g.Meta = meta }
 
 func (g *GoCov) Name() string { return "Golang default coverage format" }
 
-func (g *GoCov) Wants(diffs map[string]string) *string {
-	for v := range diffs {
+func (g *GoCov) Wants(files []string) *string {
+	for _, v := range files {
 		if base := filepath.Base(v); base != "c.out" && base != "coverage.out" {
 			continue
 		}

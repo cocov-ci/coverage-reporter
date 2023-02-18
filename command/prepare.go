@@ -2,7 +2,6 @@ package command
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"github.com/cocov-ci/coverage-reporter/meta"
 	"github.com/cocov-ci/coverage-reporter/models/github_event"
@@ -59,15 +58,11 @@ func Prepare(ctx *cli.Context) error {
 		Files: files,
 		Pwd:   pwd,
 		Sha:   sha,
+		Token: token,
 	}
-	data, err := json.Marshal(metaEntry)
 
 	if os.Getenv("COCOV_REPORTER_DEBUG_METADATA") == "true" {
 		log.Debug("Obtained metadata directory", zap.String("path", meta.MetadataDir(token)))
-	}
-
-	if err != nil {
-		return err
 	}
 
 	if err = os.RemoveAll(meta.MetadataDir(token)); err != nil {
@@ -78,8 +73,7 @@ func Prepare(ctx *cli.Context) error {
 		return err
 	}
 
-	target := meta.MetadataFilePath(token)
-	return os.WriteFile(target, data, 0655)
+	return meta.StoreMetadata(token, metaEntry)
 }
 
 func ensureCommit(pwd string, ctx *cli.Context) (string, error) {

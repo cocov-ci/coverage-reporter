@@ -28,8 +28,8 @@ type SimpleCov struct {
 	meta *meta.Metadata
 }
 
-func (s *SimpleCov) Wants(diffs map[string]string) *string {
-	for f := range diffs {
+func (s *SimpleCov) Wants(files []string) *string {
+	for _, f := range files {
 		if filepath.Base(f) != "coverage.json" {
 			continue
 		}

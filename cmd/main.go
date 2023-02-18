@@ -70,6 +70,12 @@ func main() {
 			},
 		},
 		{
+			Name: "add",
+			Usage: "Adds a single coverage result to the set of coverage " +
+				"information to be pushed to the instance",
+			Action: command.Add,
+		},
+		{
 			Name:  "submit",
 			Usage: "Submits recorded coverage results",
 			Flags: []cli.Flag{
@@ -78,6 +84,11 @@ func main() {
 					Usage:    "Defines the Cocov API URL that will receive the report",
 					Required: true,
 					EnvVars:  envs("COCOV_API_URL"),
+				},
+				&cli.BoolFlag{
+					Name: "multi",
+					Usage: "Determines whether the reporter should accept all found " +
+						"coverage files instead of only the first one",
 				},
 			},
 			Action: command.Submit,

@@ -25,9 +25,30 @@ func Submit(ctx *cli.Context) error {
 		return err
 	}
 
-	diffs := tracking.DiffFiles(runMeta.Files, currentFiles)
-	toPush, err := formats.AutoFind(diffs, runMeta)
+	var toPush map[string]string
+	if runMeta.Manual {
+		toPush, err = formats.LoadPartials(runMeta)
+		if err != nil {
+			log.Debug("Finished aggregating partials", zap.Int("files_covered", len(toPush)))
+		}
+	} else {
+		diffs := tracking.DiffFiles(runMeta.Files, currentFiles)
+		if ctx.Bool("multi") {
+			toPush, err = formats.AutoFindAll(diffs, runMeta)
+
+			if err != nil {
+				log.Debug("Finished scanning all generated files", zap.Int("files_covered", len(toPush)))
+			}
+		} else {
+			toPush, err = formats.AutoFindOne(diffs, runMeta)
+			if err != nil {
+				log.Debug("Finished scanning a single generated file", zap.Int("files_covered", len(toPush)))
+			}
+		}
+	}
+
 	if err != nil {
+		log.Error("Failed preparing data for submission", zap.Error(err))
 		return err
 	}
 

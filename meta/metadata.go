@@ -7,9 +7,11 @@ import (
 )
 
 type Metadata struct {
-	Files map[string]string `json:"files,omitempty"`
-	Pwd   string            `json:"pwd,omitempty"`
-	Sha   string            `json:"sha,omitempty"`
+	Files  map[string]string `json:"files,omitempty"`
+	Pwd    string            `json:"pwd,omitempty"`
+	Sha    string            `json:"sha,omitempty"`
+	Manual bool              `json:"manual,omitempty"`
+	Token  string            `json:"token,omitempty"`
 }
 
 func (m Metadata) PathOf(relative string) string {
@@ -40,4 +42,13 @@ func ReadMetadata(token string) (*Metadata, error) {
 	}
 
 	return &meta, err
+}
+
+func StoreMetadata(token string, meta *Metadata) error {
+	path := MetadataFilePath(token)
+	encoded, err := json.Marshal(meta)
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, encoded, 0655)
 }

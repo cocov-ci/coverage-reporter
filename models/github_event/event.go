@@ -2,6 +2,7 @@ package github_event
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"time"
 )
@@ -518,7 +519,12 @@ func Lookup() (ok bool, event *Event, err error) {
 
 	var ev Event
 	if err = json.NewDecoder(f).Decode(&ev); err != nil {
-		return false, nil, err
+		fileData, err := os.ReadFile(path)
+		if err == nil {
+			return false, nil, err
+		} else {
+			return false, nil, fmt.Errorf("parsing json: %w, data: %s", err, fileData)
+		}
 	}
 
 	return true, &ev, nil

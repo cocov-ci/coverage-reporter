@@ -16,15 +16,15 @@ type Jacoco struct {
 	meta *meta.Metadata
 }
 
-func (j *Jacoco) Wants(diffs map[string]string) *string {
+func (j *Jacoco) Wants(files []string) *string {
 	jacocoHeader := []byte("-//JACOCO//DTD")
 	reportTag := []byte("<report")
 	sessionInfoTag := []byte("<sessioninfo")
 	wants := [][]byte{jacocoHeader, reportTag, sessionInfoTag}
 
 	buf := make([]byte, 1024)
-diffLoop:
-	for f := range diffs {
+fileLoop:
+	for _, f := range files {
 		if filepath.Ext(f) != ".xml" {
 			continue
 		}
@@ -37,7 +37,7 @@ diffLoop:
 		}
 		for _, w := range wants {
 			if !bytes.Contains(buf[:l], w) {
-				continue diffLoop
+				continue fileLoop
 			}
 		}
 

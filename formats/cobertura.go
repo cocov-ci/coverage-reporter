@@ -17,11 +17,11 @@ type Cobertura struct {
 	sources []string
 }
 
-func (c *Cobertura) Wants(diffs map[string]string) *string {
+func (c *Cobertura) Wants(files []string) *string {
 	coverageBytes := []byte("<coverage")
 	lineRateBytes := []byte("line-rate=")
 
-	for f := range diffs {
+	for _, f := range files {
 		if filepath.Base(f) != "cobertura.xml" {
 			continue
 		}
