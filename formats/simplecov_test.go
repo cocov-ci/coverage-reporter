@@ -21,10 +21,10 @@ func makeSimpleCovParser(t *testing.T) *SimpleCov {
 func TestSimpleCov_Wants(t *testing.T) {
 	cov := makeSimpleCovParser(t)
 	t.Run("filter wanted", func(t *testing.T) {
-		wanted := cov.Wants(map[string]string{
-			"foo/bar.json":           "",
-			"data/bla.rb":            "",
-			"coverage/coverage.json": "",
+		wanted := cov.Wants([]string{
+			"foo/bar.json",
+			"data/bla.rb",
+			"coverage/coverage.json",
 		})
 
 		assert.NotNil(t, wanted)
@@ -32,10 +32,10 @@ func TestSimpleCov_Wants(t *testing.T) {
 	})
 
 	t.Run("handles read errors, json parsing failure, and non-simplecov files", func(t *testing.T) {
-		wanted := cov.Wants(map[string]string{
-			"foo/coverage.json":                         "",
-			"other_samples/not_json/coverage.json":      "",
-			"other_samples/not_simplecov/coverage.json": "",
+		wanted := cov.Wants([]string{
+			"foo/coverage.json",
+			"other_samples/not_json/coverage.json",
+			"other_samples/not_simplecov/coverage.json",
 		})
 		assert.Nil(t, wanted)
 	})

@@ -26,12 +26,12 @@ func prepareJacoco(t *testing.T) *Jacoco {
 
 func TestJacoco_Wants(t *testing.T) {
 	cov := prepareJacoco(t)
-	assert.Nil(t, cov.Wants(map[string]string{
-		"random-file.xml": "",
+	assert.Nil(t, cov.Wants([]string{
+		"random-file.xml",
 	}))
 
-	assert.Equal(t, "build/reports/jacoco/aggregate/jacocoTestReport.xml", *cov.Wants(map[string]string{
-		"build/reports/jacoco/aggregate/jacocoTestReport.xml": "",
+	assert.Equal(t, "build/reports/jacoco/aggregate/jacocoTestReport.xml", *cov.Wants([]string{
+		"build/reports/jacoco/aggregate/jacocoTestReport.xml",
 	}))
 }
 

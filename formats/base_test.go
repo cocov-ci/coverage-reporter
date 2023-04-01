@@ -21,7 +21,7 @@ func TestAutoFind_NoData(t *testing.T) {
 		Files: f,
 	}
 
-	r, err := AutoFind(f, &metadata)
+	r, err := AutoFindAll(f, &metadata)
 	assert.Nil(t, r)
 	assert.ErrorContains(t, err, "could not auto-detect")
 }
@@ -37,7 +37,7 @@ func TestAutoFind_OK(t *testing.T) {
 		Files: f,
 	}
 
-	r, err := AutoFind(f, &metadata)
+	r, err := AutoFindAll(f, &metadata)
 	require.NoError(t, err)
 	assert.NotNil(t, r)
 }

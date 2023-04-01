@@ -39,12 +39,12 @@ func prepareLcov(t *testing.T) *Lcov {
 
 func TestLcov_Wants(t *testing.T) {
 	cov := prepareLcov(t)
-	assert.Nil(t, cov.Wants(map[string]string{
-		"lcov.out": "",
+	assert.Nil(t, cov.Wants([]string{
+		"lcov.out",
 	}))
 
-	assert.Equal(t, "coverage.lcov", *cov.Wants(map[string]string{
-		"coverage.lcov": "",
+	assert.Equal(t, "coverage.lcov", *cov.Wants([]string{
+		"coverage.lcov",
 	}))
 }
 

@@ -27,12 +27,12 @@ func prepareCobertura(t *testing.T) *Cobertura {
 
 func TestCobertura_Wants(t *testing.T) {
 	cov := prepareCobertura(t)
-	assert.Nil(t, cov.Wants(map[string]string{
-		"cobeturas.xml": "",
+	assert.Nil(t, cov.Wants([]string{
+		"cobeturas.xml",
 	}))
 
-	assert.Equal(t, "coverage/cobertura.xml", *cov.Wants(map[string]string{
-		"coverage/cobertura.xml": "",
+	assert.Equal(t, "coverage/cobertura.xml", *cov.Wants([]string{
+		"coverage/cobertura.xml",
 	}))
 }
 

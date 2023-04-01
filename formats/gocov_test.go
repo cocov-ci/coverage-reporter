@@ -40,12 +40,12 @@ func prepareGoCov(t *testing.T) *GoCov {
 
 func TestGoCov_Wants(t *testing.T) {
 	cov := prepareGoCov(t)
-	assert.Nil(t, cov.Wants(map[string]string{
-		"coverage.out": "",
+	assert.Nil(t, cov.Wants([]string{
+		"coverage.out",
 	}))
 
-	assert.Equal(t, "c.out", *cov.Wants(map[string]string{
-		"c.out": "",
+	assert.Equal(t, "c.out", *cov.Wants([]string{
+		"c.out",
 	}))
 }
 
